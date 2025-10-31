@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRÓ-BERINJELA 🍆🍑</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:100vh; background-color:#fafafa; color:#333; padding:20px;
+  }
+  h1 { margin-bottom:40px; font-size:2rem; color:#6a0dad; }
+  .quiz-img { width:200px; height:auto; margin-bottom:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+  .question { display:flex; flex-direction:column; align-items:center; gap:15px; margin-bottom:30px; }
+  button {
+    padding:12px 24px; font-size:1rem; border:none; border-radius:8px; cursor:pointer;
+    background-color:#6a0dad; color:#fff; transition: background-color 0.2s, transform 0.2s; width:180px;
+  }
+  button:hover { background-color:#8b2fd0; transform:translateY(-2px); }
+  #resultado { font-size:1.8rem; font-weight:bold; margin-top:20px; text-align:center; }
+  #refazer { margin-top:20px; background-color:#444; }
+  #refazer:hover { background-color:#666; }
+</style>
+</head>
+<body>
+
+<h1>Você é berinjelense mesmo? 🍆</h1>
+<div id="quiz-container"></div>
+<div id="resultado"></div>
+
+<script>
+const perguntas = [
+  { texto:'Quem precisa de aviso prévio? ', op:['A) Dreia','B) Andressa','C) Fane'], correta:'b' },
+  { texto:'Qual é o apelido da Ste?', op:['A) A menina do carro branco ','B) Os mil km rodados','C) A cadela poddle dourado'], correta:'c' },
+  { texto:'O que RN sempre discorda?', op:['A) O pronunciamento da presidência','B) Os elogios','C) Os poderes do Goku '], correta:'b' },
+  { texto:'Qual foi a drama do DJ Negrexx?', op:['A) Removeram ele do nosso grupo','B) Terminou o namoro ','C) Vazaram o nude dele'], correta:'a' },
+  { texto:'Qual foi o marketing que passou no grupo?', op:['A) Karol sendo assesora','B) A nova namorada da Dreia','C) Gabi e Murilo na esquina'], correta:'c' },
+  { texto:'Quem nunca desistiu o grupo?', op:['A) John','B) Hugo','C) Girafa'], correta:'b' },
+  { texto:'Por que os meninos criaram Berinjela PLUS?', op:['A) Para falar mal das meninas','B) Defender O Yuri','C) Brotheragem'], correta:'b' },
+  { texto:'Por qual motivo a gente ria dos videos da Layene?', op:['A) Roupa','B) Dança','C) Tablet'], correta:'c' },
+  { texto:'O que aconteceu no inicio do grupo?', op:['A) Nada','B) Treta da Ana Vitoria x Coelhinha','C) Homofobia'], correta:'b' },
+  { texto:'Quase sempre sobra para quem?', op:['A) Ananda','B) Gabriel Azul','C) Dreia'], correta:'c' },
+];
+
+let pontuacao = 0;
+let atual = 0;
+const container = document.getElementById('quiz-container');
+const resultadoDiv = document.getElementById('resultado');
+
+function mostrarPergunta() {
+  const q = perguntas[atual];
+  container.innerHTML = `
+    <div class="question">
+      <p>${q.texto}</p>
+      ${q.op.map(op => `<button onclick="responder('${op[0].toLowerCase()}')">${op}</button>`).join('')}
+    </div>
+  `;
+}
+
+function responder(resposta) {
+  if(resposta === perguntas[atual].correta) pontuacao++;
+  atual++;
+  if(atual < perguntas.length) mostrarPergunta();
+  else mostrarResultado();
+}
+
+function mostrarResultado() {
+  container.innerHTML = '';
+  if(pontuacao === perguntas.length){
+    resultadoDiv.innerHTML = `
+      PARABÉNS! Você é um verdadeiro Berinjelense! 🍆💜<br>
+    `;
+    resultadoDiv.style.color = '#6a0dad';
+  } else {
+    resultadoDiv.innerHTML = `
+      REPROVADO! Acertou ${pontuacao} de ${perguntas.length} 😅<br>
+    `;
+    resultadoDiv.style.color = '#ff4444';
+  }
+
+  resultadoDiv.innerHTML += `<br><button id="refazer" onclick="reiniciarQuiz()">Refazer Quiz</button>`;
+}
+
+function reiniciarQuiz() {
+  pontuacao = 0;
+  atual = 0;
+  resultadoDiv.textContent = '';
+  mostrarPergunta();
+}
+
+mostrarPergunta();
+</script>
+</body>
+</html>
