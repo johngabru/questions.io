@@ -4,7 +4,7 @@ Um projeto divertido em homenagem ao lendário **grupo PRÓ-BERINJELA 🍆** do 
 Aqui o desafio é simples: provar que você é um verdadeiro membro raiz do grupo
 
 Responda 10 perguntas insanas baseadas em piadas internas e momentos marcantes da galera.  
-Se acertar todas — parabéns, você é oficialmente **Berinjelense de verdade**.  
+Se acertar todas, parabéns, você é oficialmente **Berinjelense de verdade**.  
 Se errar... bom, “reprovado”, né? 
 
 ---
@@ -21,4 +21,4 @@ Esse site foi feito com:
 ## Aviso
 
 Esse projeto é **apenas uma brincadeira interna**, feita com carinho e humor entre amigos.  
-Nenhum conteúdo aqui deve ser levado a sério — é tudo parte das **piadas internas do grupo**.  
+Nenhum conteúdo aqui deve ser levado a sério, é tudo parte das **piadas internas do grupo**.  
