@@ -1,10 +1,10 @@
 # 🟣 Quiz Berinjelense
 
 Um projeto divertido em homenagem ao lendário **grupo PRÓ-BERINJELA 🍆** do WhatsApp
-Aqui o desafio é simples: provar que você é um verdadeiro membro raiz do grupo
+Aqui o desafio é simples: provar que é um verdadeiro membro raiz do grupo
 
-Responda 10 perguntas insanas baseadas em piadas internas e momentos marcantes da galera.  
-Se acertar todas, parabéns, você é oficialmente **Berinjelense de verdade**.  
+Responder 10 perguntas insanas baseadas em piadas internas e momentos marcantes da galera.  
+Se acertar todas, parabéns, é oficialmente **Berinjelense de verdade**.  
 Se errar... bom, “reprovado”, né? 
 
 ---
