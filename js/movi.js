@@ -79,7 +79,7 @@ function responder(resposta, btn) {
 
 function mostrarResultado() {
   resultados.push({nome: nome, pontuacao: pontuacao});
-  container.innerHTML = '';
+  container.style.display = "none";
   progressBar.style.width = '100%';
 
   let mensagem = '';
