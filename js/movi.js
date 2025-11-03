@@ -79,7 +79,12 @@ function responder(resposta, btn) {
 
 function mostrarResultado() {
   resultados.push({nome: nome, pontuacao: pontuacao});
+
   container.style.display = "none";
+
+  resultadoDiv.style.display = "block";
+  historicoDiv.style.display = "block";
+
   progressBar.style.width = '100%';
 
   let mensagem = '';
@@ -87,13 +92,13 @@ function mostrarResultado() {
   
   if(pontuacao === perguntas.length){
     mensagem = `🔥PARABÉNS ${nome}! Você é o MESTRE BERINJELENSE SUPREMO! 🍆👑`;
-    cor = '#8b2fd0';
+    cor =  '#ffffff';
   } else if (pontuacao>= 15) {
     mensagem = `✅${nome}, aprovado! Você acertou ${pontuacao} de ${perguntas.length} 🎉`;
-    cor = '#6a0dad';
+    cor =  '#ffffff'
   } else {
      mensagem = `❌${nome}, reprovado... só ${pontuacao} de ${perguntas.length} 😅`;
-    cor = '#ff4444';
+    cor =  '#ffffff';
   }
 
   resultadoDiv.innerHTML = `${mensagem}<br><br><button id="refazer" onclick="reiniciarQuiz()">Refazer Quiz</button>`;
@@ -115,7 +120,8 @@ function reiniciarQuiz() {
   pontuacao = 0;
   atual = 0;
   resultadoDiv.textContent = '';
-    progressBar.style.width = '0%';
+  historicoDiv.textContent = '';
+  progressBar.style.width = '0%';
   container.style.display = "block";
   mostrarPergunta();
 }
