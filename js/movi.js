@@ -1,7 +1,12 @@
 let resultados = [];
+let respostas = [];
+let qtdAcertos = 0;
+let qtdErros = 0;
 let nome = "";
 let pontuacao = 0;
 let atual = 0;
+let inicioQuiz;
+let tempoTotal = 0;
 
 const perguntas = [
   { texto:'Por qual motivo rolou treta um dia antes do pré-Euforie?', op:['A) Porque o grupo dividiu opiniões sobre quem devia ficar','B) Porque removeram o Girafa','C) Porque trocaram os adms de membros'], correta:'b' },
@@ -39,6 +44,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
   nome = input.value.trim() || "Visitante";
   startScreen.style.display = "none"; 
   container.style.display = "block";   
+  inicioQuiz = Date.now();
   mostrarPergunta();
 });
 
@@ -61,9 +67,13 @@ function responder(resposta, btn) {
   const feedbackDiv = document.getElementById('feedback');
   if(resposta === perguntas[atual].correta){
     pontuacao++;
+    qtdAcertos++;
+    respostas.push({pergunta: perguntas[atual].texto, resposta: resposta, correta: "acertou"});
     btn.classList.add('correct');
     feedbackDiv.textContent = "✔ Acertou!";
   } else {
+    qtdErros++;
+    respostas.push({pergunta: perguntas[atual].texto, resposta: resposta, correta: "errou"});
     btn.classList.add('wrong');
     feedbackDiv.textContent = "✖ Errou!";
   }
@@ -107,10 +117,12 @@ function mostrarResultado() {
   let lista = resultados.map(r => `${r.nome}: ${r.pontuacao}/${perguntas.length}`).join('<br>');
   historicoDiv.innerHTML = `<br><h3>Resultados anteriores:</h3>${lista}`;
 
+  tempoTotal = Math.floor((Date.now() - inicioQuiz) / 1000);
+
 fetch("https://script.google.com/macros/s/AKfycbyIYNx4KocG3jpYs67p2a6fGy1G7F2-LsJweic33K4x5_d9bf5TDljXpGFpBkhUHxIH/exec", {
   method: "POST",
   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: `nome=${encodeURIComponent(nome)}&pontuacao=${encodeURIComponent(pontuacao)}`
+  body: `nome=${encodeURIComponent(nome)}&pontuacao=${encodeURIComponent(pontuacao)}&tempo=${encodeURIComponent(tempoTotal)}&acertos=${encodeURIComponent(qtdAcertos)}&erros=${encodeURIComponent(qtdErros)}&respostas=${encodeURIComponent(JSON.stringify(respostas))}`
 })
 .then(res => console.log("Enviado!"))
 .catch(err => console.error("Erro ao enviar", err));
